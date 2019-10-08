@@ -153,17 +153,13 @@ time=Pi/(freq(i))
 inct=time/(npoints-1)
 
 !the file in which the info will be save is created
-if (i .lt. 10) then
- write(filename, '("Normal_modes0",I1,".xyz")') i
-else
- write(filename, '("Normal_modes",I2,".xyz")') i
-endif
+write(filename, '("Normal_modes",I2.2,".xyz")') i
 open(12,file=filename,status='replace')
 
 
 do j=1,npoints
 write(12,*) nat
-write(12,*) '#Coordinate of normal mode number', i
+write(12,*) 'Q=', amp*cos(freq(i)*inct*(j-1)+ep)*1e10
  do k=1,3*nat,3
   x=1/(sqrt(mass(k)))*amp*1d10*amplitudes(k,i)*cos(freq(i)*inct*(j-1)+ep)+xyzmat(k)
   y=1/(sqrt(mass(k+1)))*amp*1d10*amplitudes(k+1,i)*cos(freq(i)*inct*(j-1)+ep)+xyzmat(k+1)
