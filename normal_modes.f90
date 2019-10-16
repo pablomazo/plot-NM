@@ -37,7 +37,7 @@ read(10,*)
 nnm=3*nat-6
 
 !the total number of points that will be calculated is:
-npoints=100
+npoints=30
 
 !the phase is set to 0
 ep=0
@@ -61,6 +61,7 @@ call freq_am(nat,nnm,amplitudes,freq)
 do i=1, nnm
 call osc_param(i,nvib,nnm, freq,amp)
 
+amp = 2e0 * amp
 call normal_modes(i,nat,nnm,attyp,xyzmat,mass,amplitudes,freq,npoints,ep,amp)
 enddo
 
