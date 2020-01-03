@@ -159,11 +159,11 @@ open(12,file=filename,status='replace')
 
 do j=1,npoints
 write(12,*) nat
-write(12,*) 'Q,Nmode=', amp*sin(freq(i)*inct*(j-1)+ep)*1e10, i
+write(12,*) 'Q,Nmode=', amp*cos(freq(i)*inct*(j-1)+ep)*1e10, i
  do k=1,3*nat,3
-  x=1/(sqrt(mass(k)))*amp*1d10*amplitudes(k,i)*sin(freq(i)*inct*(j-1)+ep)+xyzmat(k)
-  y=1/(sqrt(mass(k+1)))*amp*1d10*amplitudes(k+1,i)*sin(freq(i)*inct*(j-1)+ep)+xyzmat(k+1)
-  z=1/(sqrt(mass(k+2)))*amp*1d10*amplitudes(k+2,i)*sin(freq(i)*inct*(j-1)+ep)+xyzmat(k+2)
+  x=1/(sqrt(mass(k)))*amp*1d10*amplitudes(k,i)*cos(freq(i)*inct*(j-1)+ep)+xyzmat(k)
+  y=1/(sqrt(mass(k+1)))*amp*1d10*amplitudes(k+1,i)*cos(freq(i)*inct*(j-1)+ep)+xyzmat(k+1)
+  z=1/(sqrt(mass(k+2)))*amp*1d10*amplitudes(k+2,i)*cos(freq(i)*inct*(j-1)+ep)+xyzmat(k+2)
 
  write(12,'(A3,3(F12.9,X))') attyp((3+k)/3),x,y,z
  enddo

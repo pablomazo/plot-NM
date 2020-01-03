@@ -33,26 +33,23 @@ open(10,file='eq_geometry.xyz', status='old')
 read(10,*) nat
 read(10,*)
 
-!the number of vibrations is 3*nat-6 (this should be change for linear molecules)
-nnm=3*nat-6
-
 !the total number of points that will be calculated is:
-npoints=30
+npoints=41
 
 !the phase is set to 0
 ep=0
 
 allocate (xyzmat(3*nat))
-allocate (amplitudes(3*nat,nnm))
 allocate (mass(3*nat))
-allocate (freq(nnm))
 allocate (attyp(nat))
 
 !the xyz matrix is read
 call xyz_reader(nat,attyp,xyzmat,mass)
 
-!the next read is to jump a coment in the input file
-read(10,*)
+!the next read contains the number of normal modes:
+read(10,*) nnm
+allocate (amplitudes(3*nat,nnm))
+allocate (freq(nnm))
 
 !the frequencies and amplitudes are read
 call freq_am(nat,nnm,amplitudes,freq)
